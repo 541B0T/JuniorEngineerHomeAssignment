@@ -8,7 +8,9 @@ public class MontyHallApp {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MontyHallApp.class, args);
-		System.out.println("test");
-	}
 
+		GameHost gameHost=new GameHost();
+		gameHost.CreateGame(10,1);
+
+	}
 }
