@@ -1,14 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.Door;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GameHost {
-
-    public int maximumNumbersOfDoors=100000;
-    public int minimumNumbersOfDoors=3;
-    List<Door> doors=new ArrayList<>();
+    public List<Door> doors=new ArrayList<>();
 
     public boolean CreateGame(int numberOfDoors, int numberOfWinningDoors){
         /*
@@ -25,7 +24,7 @@ public class GameHost {
 
         //Creates the "numberOFDoors" retested.
         for (int i=0;i<numberOfDoors;i++){
-            doors.add(new Door(false,false,true,1.0));
+            doors.add(new Door(false,false,false,1.0));
         }
         //Randomly selects the winning doors.
         for (int i=0;i<numberOfWinningDoors;i++){

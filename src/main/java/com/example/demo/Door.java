@@ -14,22 +14,6 @@ public class Door {
         this.ods = ods;
     }
 
-    public boolean isOpen() {
-        return isOpen;
-    }
-
-    public void setOpen(boolean open) {
-        isOpen = open;
-    }
-
-    public double getOds() {
-        return ods;
-    }
-
-    public void setOds(double ods) {
-        this.ods = ods;
-    }
-
     public boolean hasPrise() {
         return hasPrise;
     }
@@ -46,12 +30,20 @@ public class Door {
         isSelected = selected;
     }
 
-    public boolean isClosed() {
+    public boolean isOpen() {
         return isOpen;
     }
 
-    public void setClosed(boolean closed) {
-        isOpen = closed;
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
+
+    public double getOds() {
+        return ods;
+    }
+
+    public void setOds(double ods) {
+        this.ods = ods;
     }
 }
 
