@@ -14,9 +14,10 @@ public class MontyHallApp {
 		GameHost gameHost=new GameHost();
 		Player player=new Player(0,0,0);
 
-		gameHost.CreateGame(10,1);
-		System.out.println("___");
+		gameHost.CreateGame(3,1);
+		gameHost.printsDoors(3);
 		player.selectDoorRandomly(gameHost);
+		gameHost.printsDoors(3);
 
 	}
 }

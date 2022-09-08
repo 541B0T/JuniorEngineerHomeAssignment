@@ -1,13 +1,15 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
+
 public class Door {
 
     private boolean hasPrise;
     private boolean isSelected; //Selected by the player or not.
     private boolean isOpen;
-    private double ods;
+    private BigDecimal ods;
 
-    public Door(boolean hasPrise, boolean isSelected, boolean isOpen, double ods) {
+    public Door(boolean hasPrise, boolean isSelected, boolean isOpen, BigDecimal ods) {
         this.hasPrise = hasPrise;
         this.isSelected = isSelected;
         this.isOpen = isOpen;
@@ -38,11 +40,11 @@ public class Door {
         isOpen = open;
     }
 
-    public double getOds() {
+    public BigDecimal getOds() {
         return ods;
     }
 
-    public void setOds(double ods) {
+    public void setOds(BigDecimal ods) {
         this.ods = ods;
     }
 }

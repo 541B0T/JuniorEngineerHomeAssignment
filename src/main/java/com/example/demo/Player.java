@@ -46,20 +46,21 @@ public class Player {
 
     public void selectDoorRandomly(GameHost gameHost) {
         //update the ods loop-------REMOVE COMMENT
-        gameHost.doors.get(3).setSelected(true);
-        gameHost.doors.get(5).setOpen(true);
+        gameHost.doors.get(2).setSelected(true);
+        gameHost.doors.get(0).setOpen(true);
 
         //is a door selected -1
         int doorIsSelected=0;
         for (int i = 0; i < gameHost.doors.size(); i++) {
             if (gameHost.doors.get(i).isSelected()) {
                 doorIsSelected = 1;
-                System.out.print("door is selected  =");
             }
         }
-        System.out.println(doorIsSelected);
+        /*
+        Creates a index list of doors that will inherent Probability of the empty ones,
+        that the host opened.
+         */
 
-        //Creates a list of doors that will inherent Probability
         List<Integer> doorsNotOpenedOrSelected = new ArrayList<>();
         for (int i = 0; i < gameHost.doors.size(); i++) {
             if (!gameHost.doors.get(i).isOpen()
@@ -67,22 +68,25 @@ public class Player {
                 doorsNotOpenedOrSelected.add(i);
             }
         }
-
+        //Calculates the "newOds" that these doors will inhere.
         BigDecimal newOds =BigDecimal.valueOf(gameHost.doors.size()-doorIsSelected).divide
                (BigDecimal.valueOf(doorsNotOpenedOrSelected.size()));
 
-        //Prints to consol------REMOVE COMMENT
-        System.out.println("newOds: "+newOds);
-        System.out.println("gameHost.doors.size()-doorIsSelected: " + (gameHost.doors.size() - doorIsSelected));
-        System.out.println("doorsNotOpenedOrSelected.size(): " + doorsNotOpenedOrSelected.size());
 
-
-
+        for (int i = 0; i < gameHost.doors.size(); i++) {
+            if (!gameHost.doors.get(i).isOpen()
+                    && !gameHost.doors.get(i).isSelected()) {
+                gameHost.doors.get(i).setOds(newOds);
+            }
+            else if (gameHost.doors.get(i).isOpen()){
+                gameHost.doors.get(i).setOds(new BigDecimal(0));
+            }
+        }
 
         //Finds the highest ods.
-        double highestOds = 0;
+        BigDecimal highestOds = new BigDecimal("0");
         for (Door door : gameHost.doors) {
-            if (door.getOds() > highestOds) {
+            if (door.getOds().compareTo(highestOds)==1) {
                 highestOds = door.getOds();
             }
         }
@@ -98,14 +102,8 @@ public class Player {
                 doorsIndexWithBestOds.add(j);
             }
         }
-        //prints highest ods -------REMOVE COMMENT
-        System.out.println(highestOds);
-        //prints the number of doors with the same "highest" ods.-------REMOVE COMMENT
-        System.out.println(doorsIndexWithBestOds.size());
         int random = doorsIndexWithBestOds.indexOf
                 (ThreadLocalRandom.current().nextInt(doorsIndexWithBestOds.size()));
-        System.out.println("random door selected " + random);
-
     }
 
 }
