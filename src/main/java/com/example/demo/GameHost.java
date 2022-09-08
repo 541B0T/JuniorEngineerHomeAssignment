@@ -42,6 +42,7 @@ public class GameHost {
          */
         int hasNoPrice=0;
         if (numberOfDoors<11){
+            //-------REMOVE COMMENT
             System.out.println(".::Door INFO::.");
         }
         for (int i=0;i<doors.size();i++){
@@ -49,9 +50,11 @@ public class GameHost {
             Prints the door.hasPrice to the console if the game has less than 11 doors.
             Only to make it easy for the developer to follow the game during gameplay test.
              */
+            //Don't need this when its finished-------REMOVE COMMENT
             if (numberOfDoors<11){
                 System.out.println("door index: "+(i+1)+" hasPrise=" +doors.get(i).hasPrise());
             }
+
             if (!doors.get(i).hasPrise()){
                 hasNoPrice+=1;
             }
