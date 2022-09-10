@@ -9,11 +9,11 @@ public class Door {
     private boolean isOpen;
     private BigDecimal ods;
 
-    public Door(boolean hasPrise, boolean isSelected, boolean isOpen, BigDecimal ods) {
-        this.hasPrise = hasPrise;
-        this.isSelected = isSelected;
-        this.isOpen = isOpen;
-        this.ods = ods;
+    public Door() {
+        this.hasPrise = false;
+        this.isSelected = false;
+        this.isOpen = false;
+        this.ods = new BigDecimal(1);
     }
 
     public boolean hasPrise() {
