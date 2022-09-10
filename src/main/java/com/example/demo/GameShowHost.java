@@ -1,11 +1,14 @@
 package com.example.demo;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+@Component
 public class GameShowHost {
 
     private int numberOfDoors;
@@ -111,5 +114,9 @@ public class GameShowHost {
                     + " isSelected: " + door.isSelected()
                     + " isOpen: " + door.isOpen() + " ods: " + door.getOds());
         }
+    }
+    public List<Door> getAllDoors(){
+
+        return doors;
     }
 }
