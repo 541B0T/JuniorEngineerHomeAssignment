@@ -1,45 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body style="background-color:rgb(222, 230, 233)";>
-<table >
+<body style="background-color:rgb(222, 230, 233)" ;>
+<table>
     <tr>
-
-
-        <th>
-        <form name="someName" method="post" action="/doorOne">
+    <div th:each="door : ${doors}">
+        <span th:if="${door.isOpen}">
+            <th>
+            <form name="someName" method="get" th:action="'/'+${door.getArrayIndex}">
+            <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.
+net/v/t39.30808-6/306356325_6151294394886240_6758735240879935247_n.jpg?_nc_cat=111&ccb=1
+-7&_nc_sid=0debeb&_nc_ohc=xCiIxyTByLQAX8srxoL&_nc_ht=scontent-arn2-1.xx&oh=00_AT8qXKjI3h
+QrKxgGmczpQWASCb1yhnJ8pPe9dTT5dnp3zA&oe=6322E06D"
+                   alt="Error img" width="500">
+        </form>
+        </th>
+</span>
+        <span th:if="!${door.isOpen}"><th>
+        <form name="someName" method="get" th:action="'/'+${door.getArrayIndex}">
             <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/306196995_61512
 94371552909_8794207185441192575_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0debeb&_nc_
 ohc=cQ9s4p8EczYAX9MlXFY&_nc_ht=scontent-arn2-1.xx&oh=00_AT92efbAomwP-L0ROewFB
-oKTDUdPPdf6aKyF--BTqjEt2w&oe=632266FC" alt="Girl in a jacket" width="500">
+oKTDUdPPdf6aKyF--BTqjEt2w&oe=632266FC" alt="Error img" width="500">
         </form>
         </th>
-
-        <th>
-            <form name="someName" method="post" action="/doorTwo">
-                <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/306196995_61512
-94371552909_8794207185441192575_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0debeb&_nc_
-ohc=cQ9s4p8EczYAX9MlXFY&_nc_ht=scontent-arn2-1.xx&oh=00_AT92efbAomwP-L0ROewFB
-oKTDUdPPdf6aKyF--BTqjEt2w&oe=632266FC" alt="Girl in a jacket" width="500">
-            </form>
-        </th>
-
-        <th>
-            <form name="someName" method="post" action="/doorOne">
-                <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/306356325_615129
-4394886240_6758735240879935247_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0debeb&_nc_
-ohc=vD_XZhPpHEcAX9B2a67&_nc_ht=scontent-arn2-1.xx&oh=00_AT8aAkvLz4Sm5Nq64py3i
-gOX7hm0ax7FZP4mC8LJDupMRg&oe=6320E62D" alt="Girl in a jacket" width="500">
-            </form>
-        </th>
+        </span>
+    </div>
+    </tr>
 
     <tr>
-        <th style="color: red;">SELECTED</th>
-        <th>Test2</th>
-        <th>Test3</th>
+    <div th:each="door : ${doors}">
+    <span th:if="${door.isSelected}">
+        <th style="color: red;">.::SELECTED::.</th>
+    </span>
+        <span th:if="!${door.isSelected}">
+        <th></th>
+    </div>
     </tr>
 </table>
 

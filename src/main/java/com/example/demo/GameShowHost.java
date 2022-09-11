@@ -74,7 +74,7 @@ public class GameShowHost {
     public void CreateDoors() {
         //Adds the number of doors to the door list "doors".
         for (int i = 0; i < numberOfDoors; i++) {
-            doors.add(new Door());
+            doors.add(new Door(i+1));
         }
         //Generates the number of winning doors randomly.
         for (int i = 0; i < getNumberOfWinningDoors(); i++) {
