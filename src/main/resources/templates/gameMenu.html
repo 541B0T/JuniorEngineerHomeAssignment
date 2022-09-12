@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>GameMenu</title>
 </head>
 
 <body style="background-color:rgb(222, 230, 233)">
 <div style="text-align: center;">
-            <form name="someNames" method="get" action="/selectDoor">
-                <input type="image" name="doorBotton" src="https://scontent-
+<table>
+<tr>
+  <form name="PlayAGame" method="get" action="/playAGame">
+    <input type="image" name="PlayAGame" src="https://scontent-
 arn2-2.xx.fbcdn.net/v/t39.30808-6/306641202_6156530011029345_410701195190414657
 _n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=0debeb&_nc_ohc=S-Rj-gWeLcsAX9cAJJV&_nc_ht=
 scontent-arn2-2.xx&oh=00_AT_bbzve-3M_vd_PFzM2USOtWMuC_HiPKReWma2aaiXJlQ&oe=63244C92"
-                       alt="Error img" width="500">
-            </form>
-</div>
+           alt="PlayAGameBotton" width="500">
+  </form>
 
-<div style="text-align: center;">
-    <form name="someNames" method="get" action="/selectDoor">
-        <input type="image" name="doorBotton" src="https://scontent-arn2-2.xx.
+    <form name="Simulate" method="get" action="/simulate">
+        <input type="image" name="Simulate" src="https://scontent-arn2-2.xx.
 fbcdn.net/v/t39.30808-6/306599686_6156530207695992_1699133756690164609_n.jpg?_
 nc_cat=105&ccb=1-7&_nc_sid=0debeb&_nc_ohc=KvFBPXaAmHgAX83mNSx&_nc_ht=scontent-
 arn2-2.xx&oh=00_AT_PAZ5mYJOGT5WNn84AAqKzcjp9FQNe3CSwYEEwhjT0xg&oe=6323B70A"
-               alt="Error img" width="500">
+               alt="SimulateBotton" width="500">
     </form>
-</div>
+</tr>
+</table></div>
+
 </body>
 </html>

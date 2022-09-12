@@ -5,26 +5,36 @@
     <title>Title</title>
 </head>
 <body style="background-color:rgb(222, 230, 233)" ;>
+<div style="text-align: center;">
+            <form name="Menu" method="get" action="/">
+                <input type="image" name="PlayAGame" src="https://scontent-arn2-1.xx.
+fbcdn.net/v/t39.30808-6/306701002_6156530004362679_459959143676661842_n.jpg?_nc_cat=
+107&ccb=1-7&_nc_sid=0debeb&_nc_ohc=g7EYpL4rCtQAX8mivGx&_nc_ht=scontent-arn2-1.xx&oh=00
+_AT-LpAgzuJRo83mZHzXDT3XiTUGyAkrGf9X2RstydkhO0w&oe=6324001D"
+                       alt="PlayAGameBotton" width="500">
+            </form>
+        </tr>
+    </table></div>
 <table>
     <tr>
     <div th:each="door : ${doors}">
         <span th:if="${door.isOpen}">
             <th>
-            <form name="someName" method="get" th:action="'/selectAgain/'+${door.getArrayIndex}">
+            <form name="open door" method="get" th:action="'/playAGame/firstSelection/'+${door.getArrayIndex}">
             <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.
 net/v/t39.30808-6/306356325_6151294394886240_6758735240879935247_n.jpg?_nc_cat=111&ccb=1
 -7&_nc_sid=0debeb&_nc_ohc=xCiIxyTByLQAX8srxoL&_nc_ht=scontent-arn2-1.xx&oh=00_AT8qXKjI3h
 QrKxgGmczpQWASCb1yhnJ8pPe9dTT5dnp3zA&oe=6322E06D"
-                   alt="Error img" width="500">
+                   alt="open door" width="500">
         </form>
         </th>
 </span>
         <span th:if="!${door.isOpen}"><th>
-        <form name="someName" method="get" th:action="'/selectAgain/'+${door.getArrayIndex}">
+        <form name="closed door" method="get" th:action="'/playAGame/firstSelection/'+${door.getArrayIndex}">
             <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/306196995_61512
 94371552909_8794207185441192575_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0debeb&_nc_
 ohc=cQ9s4p8EczYAX9MlXFY&_nc_ht=scontent-arn2-1.xx&oh=00_AT92efbAomwP-L0ROewFB
-oKTDUdPPdf6aKyF--BTqjEt2w&oe=632266FC" alt="Error img" width="500">
+oKTDUdPPdf6aKyF--BTqjEt2w&oe=632266FC" alt="Eclosed door" width="500">
         </form>
         </th>
         </span>
@@ -37,12 +47,13 @@ oKTDUdPPdf6aKyF--BTqjEt2w&oe=632266FC" alt="Error img" width="500">
         <th><img src="https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/306579455_
 6154718294543850_4512227809919736752_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=0debeb&_nc_
 ohc=8k3O-f2l8pcAX94ooIw&_nc_ht=scontent-arn2-1.xx&oh=00_AT8FIJiF9HgHQKNbAIjc0dByuchPW_
-61ALsfscwY-jXQ4Q&oe=63241468" alt="Error img" width="500"> </th>
+61ALsfscwY-jXQ4Q&oe=63241468" alt="Selectred door indicator" width="500"> </th>
     </span>
         <span th:if="!${door.isSelected}">
         <th></th>
     </div>
     </tr>
 </table>
+
 </body>
 </html>

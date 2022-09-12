@@ -2,25 +2,36 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>secondSelection</title>
 </head>
 <body style="background-color:rgb(222, 230, 233)" ;>
+<div style="text-align: center;">
+    <table>
+        <tr>
+            <form name="Menu" method="get" action="/">
+                <input type="image" name="PlayAGame" src="https://scontent-arn2-1.xx.
+fbcdn.net/v/t39.30808-6/306701002_6156530004362679_459959143676661842_n.jpg?_nc_cat=
+107&ccb=1-7&_nc_sid=0debeb&_nc_ohc=g7EYpL4rCtQAX8mivGx&_nc_ht=scontent-arn2-1.xx&oh=00
+_AT-LpAgzuJRo83mZHzXDT3XiTUGyAkrGf9X2RstydkhO0w&oe=6324001D"
+                       alt="PlayAGameBotton" width="500">
+            </form>
+        </tr>
+    </table></div>
+
 <table>
     <tr>
     <div th:each="door : ${doors}">
         <span th:if="${door.isOpen}">
-            <th>
-            <form name="someName" method="get" th:action="'/selectDoor/'+${door.getArrayIndex}">
-            <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.
+             <th>
+            <img src="https://scontent-arn2-1.xx.fbcdn.
 net/v/t39.30808-6/306356325_6151294394886240_6758735240879935247_n.jpg?_nc_cat=111&ccb=1
 -7&_nc_sid=0debeb&_nc_ohc=xCiIxyTByLQAX8srxoL&_nc_ht=scontent-arn2-1.xx&oh=00_AT8qXKjI3h
 QrKxgGmczpQWASCb1yhnJ8pPe9dTT5dnp3zA&oe=6322E06D"
-                   alt="Error img" width="500">
-        </form>
+                 alt="Error img" width="500">
         </th>
 </span>
         <span th:if="!${door.isOpen}"><th>
-        <form name="someName" method="get" th:action="'/selectDoor/'+${door.getArrayIndex}">
+        <form name="someName" method="get" th:action="'/playAGame/secondSelection/'+${door.getArrayIndex}">
             <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/306196995_61512
 94371552909_8794207185441192575_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0debeb&_nc_
 ohc=cQ9s4p8EczYAX9MlXFY&_nc_ht=scontent-arn2-1.xx&oh=00_AT92efbAomwP-L0ROewFB
@@ -44,6 +55,5 @@ ohc=8k3O-f2l8pcAX94ooIw&_nc_ht=scontent-arn2-1.xx&oh=00_AT8FIJiF9HgHQKNbAIjc0dBy
     </div>
     </tr>
 </table>
-
 </body>
 </html>
