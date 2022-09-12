@@ -37,39 +37,10 @@ public class GameShowHost {
     }
 
     public void StartNewRound() {
-      doors.clear();
-      CreateDoors();
-    }
-    public void OpenDoorRandomly() {
-        //Finds the highest ods.
-        BigDecimal highestOds = new BigDecimal("0");
-        for (Door door : doors) {
-            if (door.getOds().compareTo(highestOds)==1) {
-                highestOds = door.getOds();
-            }
-        }
-            /*makes a list of Door indexes that has the
-            "highestOds" && "!isSelected" && "!isOpen"
-            to select a new door from.
-             */
-        List<Integer> doorsIndexWithBestOds = new ArrayList<>();
-        for (int j = 0; j < doors.size(); j++) {
-            if (doors.get(j).getOds() == highestOds
-                    && !doors.get(j).isOpen()
-                    && !doors.get(j).isSelected()) {
-                doorsIndexWithBestOds.add(j);
-            }
-        }
-        int random = doorsIndexWithBestOds.indexOf
-                (ThreadLocalRandom.current().nextInt(doorsIndexWithBestOds.size()));
-        doors.get(random).setOpen(true);
-    }
-
-
-    public void CreateDoors() {
+        doors.clear();
         //Adds the number of doors to the door list "doors".
         for (int i = 0; i < numberOfDoors; i++) {
-            doors.add(new Door(i+1));
+            doors.add(new Door(i + 1));
         }
         //Generates the number of winning doors randomly.
         for (int i = 0; i < getNumberOfWinningDoors(); i++) {
@@ -110,10 +81,12 @@ public class GameShowHost {
                     + " isOpen: " + door.isOpen() + " ods: " + door.getOds());
         }
     }
-    public List<Door> getAllDoors(){
+
+    public List<Door> getAllDoors() {
         return doors;
     }
-    public void openDoor(){
+
+    public void openDoor() {
         for (Door door : doors) {
             if (!door.isSelected() && !door.hasPrice()) {
                 door.setOpen(true);
@@ -121,17 +94,19 @@ public class GameShowHost {
             }
         }
     }
-    public void SelectDoorNumber(int number){
-        if (!doors.get(number-1).isOpen()){
-            for (int i=0;i<3;i++){
-                doors.get(i).setSelected(i == number - 1);
-            }
-        }
-    }
-    public void Conclution(){
+    public void Conclusion(Contestant contestant) {
         for (Door door : doors) {
             door.setOpen(true);
         }
-
+        for (Door door : doors) {
+           if (door.hasPrice()&&door.isSelected()){
+               contestant.setNumberOFWonRounds(contestant.getNumberOFWonRounds()+1);
+           }
+           else if (!door.hasPrice()&&door.isSelected()){
+               contestant.setGetNumberOFLostRounds(contestant.getGetNumberOFLostRounds()+1);
+           }
+        }
+        System.out.println("winns: "+contestant.getNumberOFWonRounds());
+        System.out.println("losses: "+contestant.getGetNumberOFLostRounds());
     }
 }

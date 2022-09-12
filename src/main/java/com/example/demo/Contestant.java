@@ -66,4 +66,11 @@ public class Contestant {
                 (ThreadLocalRandom.current().nextInt(doorsIndexWithBestOds.size()));
         gameHost.doors.get(random).setSelected(true);
     }
+    public void SelectDoorNumber(int number, GameShowHost gameShowHost){
+        if (!gameShowHost.doors.get(number-1).isOpen()){
+            for (int i=0;i<3;i++){
+                gameShowHost.doors.get(i).setSelected(i == number - 1);
+            }
+        }
+    }
 }

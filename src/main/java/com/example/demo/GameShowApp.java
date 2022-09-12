@@ -14,7 +14,7 @@ public class GameShowApp {
 		Contestant tobias=new Contestant();
 
 		GameShowHost montyHall=new GameShowHost();
-		montyHall.CreateDoors();
+		montyHall.StartNewRound();
 		montyHall.CalculateOds();
 		tobias.SelectDoorRandomly(montyHall);
 		montyHall.CalculateOds();

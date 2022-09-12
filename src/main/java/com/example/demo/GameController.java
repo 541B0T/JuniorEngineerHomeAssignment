@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class GameController {
     @Autowired
-    GameShowHost gameShowHost;
+    GameShowHost gameShowHost=new GameShowHost();
+    Contestant contestant =new Contestant();
 
     //Redirect browser to "/gameMenu" page
     @GetMapping("/")
@@ -33,15 +34,15 @@ public class GameController {
 
     //page "firstSelection" presents the three doors to the player
     @GetMapping("/playAGame/firstSelection")
-    public String displayGameState(Model model){
+    public String FirstDisplayDoors(Model model){
         model.addAttribute("doors",gameShowHost.getAllDoors());
         return "firstSelection";
     }
 
     //sets the selected door "isSelected" true. and deselects the others.
     @GetMapping("/playAGame/firstSelection/{number}")
-    public String firstSelectedDoor(@PathVariable int number) {
-        gameShowHost.SelectDoorNumber(number);
+    public String FirstSelectDoor(@PathVariable int number) {
+        contestant.SelectDoorNumber(number, gameShowHost);
         return "redirect:/playAGame/secondSelection";
     }
 
@@ -50,7 +51,7 @@ public class GameController {
     And the host opens one of the empty doors.
      */
     @GetMapping("/playAGame/secondSelection")
-    public String switcher(Model model){
+    public String SecondDisplayDoors(Model model){
         model.addAttribute("doors",gameShowHost.getAllDoors());
         gameShowHost.openDoor();
         return "secondSelection";
@@ -58,18 +59,16 @@ public class GameController {
 
     //sets the selected door "isSelected" true. and deselects the others.
     @GetMapping("/playAGame/secondSelection/{number}")
-    public String selectingDoorTwo(@PathVariable int number) {
-        gameShowHost.SelectDoorNumber(number);
-        return "redirect:/conclution";
+    public String SecondSelectDoor(@PathVariable int number) {
+        contestant.SelectDoorNumber(number, gameShowHost);
+        return "redirect:/conclusion";
     }
 
     //Opens the remaining doors
-    @GetMapping("/conclution")
-    public String conclution(Model model){
+    @GetMapping("/conclusion")
+    public String conclusion(Model model){
         model.addAttribute("doors",gameShowHost.getAllDoors());
-        for (Door door : gameShowHost.doors) {
-            door.setOpen(true);
-        }
+        gameShowHost.Conclusion(contestant);
         return "concludeRound";
     }
 }
