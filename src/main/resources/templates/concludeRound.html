@@ -8,24 +8,20 @@
 <table>
     <tr>
     <div th:each="door : ${doors}">
-        <span th:if="${door.isOpen}">
+        <span th:if="!${door.hasPrice}">
             <th>
-            <form name="someName" method="get" th:action="'/'+${door.getArrayIndex}">
-            <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.
+            <img src="https://scontent-arn2-1.xx.fbcdn.
 net/v/t39.30808-6/306356325_6151294394886240_6758735240879935247_n.jpg?_nc_cat=111&ccb=1
 -7&_nc_sid=0debeb&_nc_ohc=xCiIxyTByLQAX8srxoL&_nc_ht=scontent-arn2-1.xx&oh=00_AT8qXKjI3h
 QrKxgGmczpQWASCb1yhnJ8pPe9dTT5dnp3zA&oe=6322E06D"
                    alt="Error img" width="500">
-        </form>
         </th>
 </span>
-        <span th:if="!${door.isOpen}"><th>
-        <form name="someName" method="get" th:action="'/'+${door.getArrayIndex}">
-            <input type="image" name="doorBotton" src="https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/306196995_61512
-94371552909_8794207185441192575_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0debeb&_nc_
-ohc=cQ9s4p8EczYAX9MlXFY&_nc_ht=scontent-arn2-1.xx&oh=00_AT92efbAomwP-L0ROewFB
-oKTDUdPPdf6aKyF--BTqjEt2w&oe=632266FC" alt="Error img" width="500">
-        </form>
+        <span th:if="${door.hasPrice}"><th>
+            <img src="https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/306183879_
+6151294398219573_1805573532518976177_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=0debeb&_nc_ohc
+=z5XVF7L70UAAX-VfbVB&_nc_ht=scontent-arn2-1.xx&oh=00_AT_NulgHfnHAj9WVKgF81qL5xGWa8yQ
+dw7FSEaWmAk-4zg&oe=63228258" alt="Error img" width="500">
         </th>
         </span>
     </div>
@@ -34,13 +30,15 @@ oKTDUdPPdf6aKyF--BTqjEt2w&oe=632266FC" alt="Error img" width="500">
     <tr>
     <div th:each="door : ${doors}">
     <span th:if="${door.isSelected}">
-        <th style="color: red;">.::SELECTED::.</th>
+        <th><img src="https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/306579455_
+6154718294543850_4512227809919736752_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=0debeb&_nc_
+ohc=8k3O-f2l8pcAX94ooIw&_nc_ht=scontent-arn2-1.xx&oh=00_AT8FIJiF9HgHQKNbAIjc0dByuchPW_
+61ALsfscwY-jXQ4Q&oe=63241468" alt="Error img" width="500"> </th>
     </span>
         <span th:if="!${door.isSelected}">
         <th></th>
     </div>
     </tr>
 </table>
-
 </body>
 </html>

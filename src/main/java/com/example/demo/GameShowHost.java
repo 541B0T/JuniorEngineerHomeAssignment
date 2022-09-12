@@ -49,7 +49,7 @@ public class GameShowHost {
 
         //Simulate montyHall.OpenDoor
         for (Door door : doors) {
-            if (!door.isSelected() && !door.hasPrise()) {
+            if (!door.isSelected() && !door.hasPrice()) {
                 door.setOpen(true);
                 break;
             }
@@ -79,8 +79,8 @@ public class GameShowHost {
         //Generates the number of winning doors randomly.
         for (int i = 0; i < getNumberOfWinningDoors(); i++) {
             int randomDoor = ThreadLocalRandom.current().nextInt(getNumberOfDoors());
-            while (!doors.get(randomDoor).hasPrise()) {
-                doors.get(randomDoor).setHasPrise(true);
+            while (!doors.get(randomDoor).hasPrice()) {
+                doors.get(randomDoor).setHasPrice(true);
             }
         }
     }
@@ -110,7 +110,7 @@ public class GameShowHost {
     public void DoorListInfo() {
         System.out.println("_____________________");
         for (Door door : doors) {
-            System.out.println("hasPrice: " + door.hasPrise()
+            System.out.println("hasPrice: " + door.hasPrice()
                     + " isSelected: " + door.isSelected()
                     + " isOpen: " + door.isOpen() + " ods: " + door.getOds());
         }
@@ -118,5 +118,13 @@ public class GameShowHost {
     public List<Door> getAllDoors(){
 
         return doors;
+    }
+    public void openDoor(){
+        for (Door door : doors) {
+            if (!door.isSelected() && !door.hasPrice()) {
+                door.setOpen(true);
+                break;
+            }
+        }
     }
 }
