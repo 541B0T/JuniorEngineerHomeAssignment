@@ -36,40 +36,35 @@ public class GameShowHost {
         this.numberOfWinningDoors = numberOfWinningDoors;
     }
 
-    public void CreateGame() {
-        CreateDoors();
-        CalculateOds();
-        DoorListInfo();
-        //Above is great.
-
-        //Simulate Player.SelectDoor. Make it so that a Player2 can stay with the first door.
-        doors.get(1).setSelected(true);
-        CalculateOds();
-        DoorListInfo();
-
-        //Simulate montyHall.OpenDoor
+    public void StartNewRound() {
+      doors.clear();
+      CreateDoors();
+    }
+    public void OpenDoorRandomly() {
+        //Finds the highest ods.
+        BigDecimal highestOds = new BigDecimal("0");
         for (Door door : doors) {
-            if (!door.isSelected() && !door.hasPrice()) {
-                door.setOpen(true);
-                break;
+            if (door.getOds().compareTo(highestOds)==1) {
+                highestOds = door.getOds();
             }
         }
-        CalculateOds();
-        DoorListInfo();
-
-        //Simulate Player.ChangeDoor
-
-        //Simulate montyHall.ResolvesTheRound
-
-        /*
-        ____INFO____________
-        Calculate how many doors needs
-        to be opened for only one door to remain.
-        Or is there a better way!?
-
-        Make a test for all the open door combinations.
-         */
+            /*makes a list of Door indexes that has the
+            "highestOds" && "!isSelected" && "!isOpen"
+            to select a new door from.
+             */
+        List<Integer> doorsIndexWithBestOds = new ArrayList<>();
+        for (int j = 0; j < doors.size(); j++) {
+            if (doors.get(j).getOds() == highestOds
+                    && !doors.get(j).isOpen()
+                    && !doors.get(j).isSelected()) {
+                doorsIndexWithBestOds.add(j);
+            }
+        }
+        int random = doorsIndexWithBestOds.indexOf
+                (ThreadLocalRandom.current().nextInt(doorsIndexWithBestOds.size()));
+        doors.get(random).setOpen(true);
     }
+
 
     public void CreateDoors() {
         //Adds the number of doors to the door list "doors".
@@ -116,7 +111,6 @@ public class GameShowHost {
         }
     }
     public List<Door> getAllDoors(){
-
         return doors;
     }
     public void openDoor(){
@@ -126,5 +120,18 @@ public class GameShowHost {
                 break;
             }
         }
+    }
+    public void SelectDoorNumber(int number){
+        if (!doors.get(number-1).isOpen()){
+            for (int i=0;i<3;i++){
+                doors.get(i).setSelected(i == number - 1);
+            }
+        }
+    }
+    public void Conclution(){
+        for (Door door : doors) {
+            door.setOpen(true);
+        }
+
     }
 }

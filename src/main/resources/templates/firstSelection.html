@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>FirstSelection</title>
 </head>
 <body style="background-color:rgb(222, 230, 233)" ;>
 <div style="text-align: center;">
@@ -40,7 +40,6 @@ oKTDUdPPdf6aKyF--BTqjEt2w&oe=632266FC" alt="Eclosed door" width="500">
         </span>
     </div>
     </tr>
-
     <tr>
     <div th:each="door : ${doors}">
     <span th:if="${door.isSelected}">
@@ -54,6 +53,5 @@ ohc=8k3O-f2l8pcAX94ooIw&_nc_ht=scontent-arn2-1.xx&oh=00_AT8FIJiF9HgHQKNbAIjc0dBy
     </div>
     </tr>
 </table>
-
 </body>
 </html>

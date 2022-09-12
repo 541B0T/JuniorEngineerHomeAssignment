@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class GameController {
-
     @Autowired
     GameShowHost gameShowHost;
 
     //Redirect browser to "/gameMenu" page
     @GetMapping("/")
-    public String ridirectToGameMenu(){
+    public String redirectToGameMenu(){
         return "redirect:/gameMenu";
     }
 
@@ -27,9 +26,8 @@ public class GameController {
     //Button "Play a game" creates a new game
     @GetMapping("/playAGame")
     public String PlayAGame(Model model) {
-        gameShowHost.doors.clear();
         model.addAttribute("doors",gameShowHost.getAllDoors());
-        gameShowHost.CreateDoors();
+        gameShowHost.StartNewRound();
         return "redirect:/playAGame/firstSelection";
     }
 
@@ -43,14 +41,10 @@ public class GameController {
     //sets the selected door "isSelected" true. and deselects the others.
     @GetMapping("/playAGame/firstSelection/{number}")
     public String firstSelectedDoor(@PathVariable int number) {
-        if (!gameShowHost.doors.get(number-1).isOpen()){
-            for (int i=0;i<3;i++){
-                gameShowHost.doors.get(i).setSelected(i == number - 1);
-            }
-        }
-        gameShowHost.DoorListInfo();
+        gameShowHost.SelectDoorNumber(number);
         return "redirect:/playAGame/secondSelection";
     }
+
     /*
     page "secondSelection" presents the three doors to the player.
     And the host opens one of the empty doors.
@@ -61,17 +55,15 @@ public class GameController {
         gameShowHost.openDoor();
         return "secondSelection";
     }
+
+    //sets the selected door "isSelected" true. and deselects the others.
     @GetMapping("/playAGame/secondSelection/{number}")
     public String selectingDoorTwo(@PathVariable int number) {
-        if (!gameShowHost.doors.get(number-1).isOpen()){
-            for (int i=0;i<3;i++){
-                gameShowHost.doors.get(i).setSelected(i == number - 1);
-            }
-        }
-        gameShowHost.DoorListInfo();
+        gameShowHost.SelectDoorNumber(number);
         return "redirect:/conclution";
     }
-    //sets the selected door "isSelected" true. and deselects the others.
+
+    //Opens the remaining doors
     @GetMapping("/conclution")
     public String conclution(Model model){
         model.addAttribute("doors",gameShowHost.getAllDoors());
