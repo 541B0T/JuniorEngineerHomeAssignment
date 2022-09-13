@@ -2,10 +2,6 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.ui.Model;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class GameShowApp {
@@ -13,9 +9,7 @@ public class GameShowApp {
 		SpringApplication.run(GameShowApp.class, args);
 
 		Simulate();
-
 	}
-	//If you change door
 	public static boolean Simulate(){
 		Contestant changeDoorPlayer=new Contestant();
 		GameShowHost host=new GameShowHost();
@@ -52,5 +46,4 @@ public class GameShowApp {
 		}
 		return isChangeBetter;
 	}
-
 }

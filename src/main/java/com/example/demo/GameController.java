@@ -72,14 +72,11 @@ public class GameController {
         return "concludeRound";
     }
     @GetMapping("/simulate")
-    public String DirectToSimulate() {
-
-        return "redirect:/simulate/100times";
+    public String redirectTosimsim(){
+        return "redirect:/simulate/start";
     }
 
-    @GetMapping("/simulate/100times")
-
-    //If you change door
+    @GetMapping("/simulate/start")
     public String Simulate(Model model){
         Contestant changeDoorPlayer=new Contestant();
         GameShowHost host=new GameShowHost();
@@ -87,7 +84,7 @@ public class GameController {
         for (int i=0;i<100;i++){
             host.StartNewRound();
             host.CalculateOds();
-
+            //If you change door
             changeDoorPlayer.SelectDoor(host);
             host.openDoor();
             host.CalculateOds();
@@ -95,9 +92,8 @@ public class GameController {
             changeDoorPlayer.SelectDoor(host);
             host.Conclusion(changeDoorPlayer);
         }
-        model.addAttribute("winsPlayerOne",changeDoorPlayer.getNumberOFWonRounds());
+       model.addAttribute("winsPlayerOne",changeDoorPlayer.getNumberOFWonRounds());
         model.addAttribute("lossesPlayerOne",changeDoorPlayer.getGetNumberOFLostRounds());
-
         //if you don't change door
         Contestant noChangeDoorPlayer=new Contestant();
         GameShowHost host2=new GameShowHost();
