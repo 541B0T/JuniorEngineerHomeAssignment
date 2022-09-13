@@ -7,15 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class MontyHallTests {
 
+	//Do I have a better chance to win if I change my door
 	@Test
-	void contextLoads() {
-	}
-
-	@Test
-	public void createGameTest(){
-		//Changed the test
-		//Assertions.assertEquals(true, result);
-
+	public void isBetterToChange(){
+		Assertions.assertEquals(true, GameShowApp.Simulate());
 	}
 
 }

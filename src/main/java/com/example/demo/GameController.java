@@ -71,8 +71,13 @@ public class GameController {
         gameShowHost.Conclusion(contestant);
         return "concludeRound";
     }
-
     @GetMapping("/simulate")
+    public String DirectToSimulate() {
+
+        return "redirect:/simulate/100times";
+    }
+
+    @GetMapping("/simulate/100times")
 
     //If you change door
     public String Simulate(Model model){
@@ -93,9 +98,6 @@ public class GameController {
         model.addAttribute("winsPlayerOne",changeDoorPlayer.getNumberOFWonRounds());
         model.addAttribute("lossesPlayerOne",changeDoorPlayer.getGetNumberOFLostRounds());
 
-        System.out.println("Wins: "+changeDoorPlayer.getNumberOFWonRounds());
-        System.out.println("Losses: "+changeDoorPlayer.getGetNumberOFLostRounds());
-
         //if you don't change door
         Contestant noChangeDoorPlayer=new Contestant();
         GameShowHost host2=new GameShowHost();
@@ -112,10 +114,6 @@ public class GameController {
         }
         model.addAttribute("winsPlayerTwo",noChangeDoorPlayer.getNumberOFWonRounds());
         model.addAttribute("lossesPlayerTwo",noChangeDoorPlayer.getGetNumberOFLostRounds());
-
-
-        System.out.println("Wins: "+noChangeDoorPlayer.getNumberOFWonRounds());
-        System.out.println("Losses: "+noChangeDoorPlayer.getGetNumberOFLostRounds());
 
         return "/simulate";
     }
