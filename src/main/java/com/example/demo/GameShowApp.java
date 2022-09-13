@@ -10,18 +10,5 @@ import java.util.List;
 public class GameShowApp {
 	public static void main(String[] args) {
 		SpringApplication.run(GameShowApp.class, args);
-
-		Contestant tobias=new Contestant();
-
-		GameShowHost montyHall=new GameShowHost();
-		montyHall.StartNewRound();
-		montyHall.CalculateOds();
-		tobias.SelectDoorRandomly(montyHall);
-		montyHall.CalculateOds();
-
-
-
-
-
 	}
 }

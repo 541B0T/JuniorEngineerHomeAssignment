@@ -42,7 +42,7 @@ public class GameController {
     //sets the selected door "isSelected" true. and deselects the others.
     @GetMapping("/playAGame/firstSelection/{number}")
     public String FirstSelectDoor(@PathVariable int number) {
-        contestant.SelectDoorNumber(number, gameShowHost);
+        contestant.SelectDoorNumber(number-1, gameShowHost);
         return "redirect:/playAGame/secondSelection";
     }
 
@@ -60,15 +60,36 @@ public class GameController {
     //sets the selected door "isSelected" true. and deselects the others.
     @GetMapping("/playAGame/secondSelection/{number}")
     public String SecondSelectDoor(@PathVariable int number) {
-        contestant.SelectDoorNumber(number, gameShowHost);
+        contestant.SelectDoorNumber(number-1, gameShowHost);
         return "redirect:/conclusion";
     }
 
     //Opens the remaining doors
     @GetMapping("/conclusion")
-    public String conclusion(Model model){
+    public String Conclusion(Model model){
         model.addAttribute("doors",gameShowHost.getAllDoors());
         gameShowHost.Conclusion(contestant);
         return "concludeRound";
+    }
+
+    @GetMapping("/simulate")
+    public String Simulate(){
+        Contestant player=new Contestant();
+        GameShowHost host=new GameShowHost();
+
+        host.StartNewRound();
+        host.CalculateOds();
+        host.DoorListInfo();
+
+        player.SelectDoorRandomly(host);
+        host.openDoor();
+        host.CalculateOds();
+        host.DoorListInfo();
+
+        player.SelectDoorRandomly(host);
+        host.DoorListInfo();
+        //montyHall.Conclusion(tobias);
+
+        return "/simulate";
     }
 }
