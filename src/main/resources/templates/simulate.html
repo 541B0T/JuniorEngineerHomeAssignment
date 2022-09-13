@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>GameMenu</title>
@@ -12,6 +12,18 @@ fbcdn.net/v/t39.30808-6/306701002_6156530004362679_459959143676661842_n.jpg?_nc_
 107&ccb=1-7&_nc_sid=0debeb&_nc_ohc=g7EYpL4rCtQAX8mivGx&_nc_ht=scontent-arn2-1.xx&oh=00
 _AT-LpAgzuJRo83mZHzXDT3XiTUGyAkrGf9X2RstydkhO0w&oe=6324001D"
                alt="PlayAGameBotton" width="500">
-    </form></div>
+    </form>
+</div>
+<div style="text-align: center;">
+    <p style="font-size: 35px">
+    This simulated 100 rounds
+</p>
+    <p style="font-size: 35px">
+        Result if contestant reselect door:</p>
+    <p style="font-size: 35px" th:text="'Wins: '+${winsPlayerOne}+' Losses: '+${lossesPlayerOne}"></p>
+    <p style="font-size: 35px">
+        Result if contestant don't reselect door:</p>
+    <p style="font-size: 35px" th:text="'Wins: '+${winsPlayerTwo}+' Losses: '+${lossesPlayerTwo}"></p>
+</div>
 </body>
 </html>

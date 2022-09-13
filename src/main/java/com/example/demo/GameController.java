@@ -73,22 +73,49 @@ public class GameController {
     }
 
     @GetMapping("/simulate")
-    public String Simulate(){
-        Contestant player=new Contestant();
+
+    //If you change door
+    public String Simulate(Model model){
+        Contestant changeDoorPlayer=new Contestant();
         GameShowHost host=new GameShowHost();
 
-        host.StartNewRound();
-        host.CalculateOds();
-        host.DoorListInfo();
+        for (int i=0;i<100;i++){
+            host.StartNewRound();
+            host.CalculateOds();
 
-        player.SelectDoorRandomly(host);
-        host.openDoor();
-        host.CalculateOds();
-        host.DoorListInfo();
+            changeDoorPlayer.SelectDoor(host);
+            host.openDoor();
+            host.CalculateOds();
 
-        player.SelectDoorRandomly(host);
-        host.DoorListInfo();
-        //montyHall.Conclusion(tobias);
+            changeDoorPlayer.SelectDoor(host);
+            host.Conclusion(changeDoorPlayer);
+        }
+        model.addAttribute("winsPlayerOne",changeDoorPlayer.getNumberOFWonRounds());
+        model.addAttribute("lossesPlayerOne",changeDoorPlayer.getGetNumberOFLostRounds());
+
+        System.out.println("Wins: "+changeDoorPlayer.getNumberOFWonRounds());
+        System.out.println("Losses: "+changeDoorPlayer.getGetNumberOFLostRounds());
+
+        //if you don't change door
+        Contestant noChangeDoorPlayer=new Contestant();
+        GameShowHost host2=new GameShowHost();
+
+        for (int i=0;i<100;i++){
+            host2.StartNewRound();
+            host2.CalculateOds();
+
+            noChangeDoorPlayer.SelectDoor(host2);
+            host2.openDoor();
+            host2.CalculateOds();
+
+            host2.Conclusion(noChangeDoorPlayer);
+        }
+        model.addAttribute("winsPlayerTwo",noChangeDoorPlayer.getNumberOFWonRounds());
+        model.addAttribute("lossesPlayerTwo",noChangeDoorPlayer.getGetNumberOFLostRounds());
+
+
+        System.out.println("Wins: "+noChangeDoorPlayer.getNumberOFWonRounds());
+        System.out.println("Losses: "+noChangeDoorPlayer.getGetNumberOFLostRounds());
 
         return "/simulate";
     }

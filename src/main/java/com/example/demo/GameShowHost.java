@@ -106,7 +106,5 @@ public class GameShowHost {
                contestant.setGetNumberOFLostRounds(contestant.getGetNumberOFLostRounds()+1);
            }
         }
-        System.out.println("winns: "+contestant.getNumberOFWonRounds());
-        System.out.println("losses: "+contestant.getGetNumberOFLostRounds());
     }
 }

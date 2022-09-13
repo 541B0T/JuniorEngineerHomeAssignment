@@ -42,11 +42,11 @@ public class Contestant {
     }
 
     //Selects a door randomy among the doors with the higest ods
-    public void SelectDoorRandomly(GameShowHost gameHost) {
+    public void SelectDoor(GameShowHost gameHost) {
         //Finds the highest ods.
         BigDecimal highestOds = new BigDecimal("0");
         for (Door door : gameHost.doors) {
-            if (door.getOds().compareTo(highestOds)==1) {
+            if (door.getOds().compareTo(highestOds) == 1) {
                 highestOds = door.getOds();
             }
         }
@@ -63,28 +63,23 @@ public class Contestant {
                 doorsIndexWithBestOds.add(j);
             }
         }
-        for (Integer doorsIndexWithBestOd : doorsIndexWithBestOds) {
-            System.out.println(doorsIndexWithBestOd);
+        int random = doorsIndexWithBestOds.indexOf
+                (ThreadLocalRandom.current().nextInt(doorsIndexWithBestOds.size()));
+
+        if (random == -1) {
+            random = 0;
         }
-
-            int random = doorsIndexWithBestOds.indexOf
-                    (ThreadLocalRandom.current().nextInt(doorsIndexWithBestOds.size()));
-
-        if (random==-1){
-            random=0;
-        }
-        System.out.println("random nr: "+random);
-        SelectDoorNumber(doorsIndexWithBestOds.get(random),gameHost);
-
+        SelectDoorNumber(doorsIndexWithBestOds.get(random), gameHost);
 
 
     }
-    public void SelectDoorNumber(int number, GameShowHost gameShowHost){
+
+    public void SelectDoorNumber(int number, GameShowHost gameShowHost) {
         for (Door door : gameShowHost.doors) {
             door.setSelected(false);
         }
-        if (!gameShowHost.doors.get(number).isOpen()){
-                gameShowHost.doors.get(number).setSelected(true);
+        if (!gameShowHost.doors.get(number).isOpen()) {
+            gameShowHost.doors.get(number).setSelected(true);
         }
     }
 }
